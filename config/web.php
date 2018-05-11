@@ -65,8 +65,8 @@ $config = [
             'host' => 'smtp.gmail.com',
             'username' =>'tspclone@gmail.com',
             'password' => 'violentina123!',
-            'port' => '587',
-            'encryption' => 'tls',
+            'port' => '465',
+            'encryption' => 'ssl',
              ],
             
         ],
