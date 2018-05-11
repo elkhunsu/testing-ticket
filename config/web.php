@@ -62,9 +62,9 @@ $config = [
         'useFileTransport' => false,
         'transport' => [
             'class' => 'Swift_SmtpTransport',
-            'host' => $conf['smtp_host'],
-            'username' => $conf['smtp_username'],
-            'password' => $conf['smtp_password'],
+            'host' => 'smtp.gmail.com',
+            'username' =>'tspclone@gmail.com',
+            'password' => 'violentina123!',
             'port' => '587',
             'encryption' => 'tls',
              ],
