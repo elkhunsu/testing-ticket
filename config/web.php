@@ -9,6 +9,10 @@ $config = [
     'bootstrap' => ['log'],
     'language'=> 'en',
     'modules' => [
+       'gii' => [
+            'class' => 'yii\gii\Module', //adding gii module
+            'allowedIPs' => ['127.0.0.1', '::1']  //allowing ip's 
+          ],
         'data' => [
             'class' => 'app\modules\data\Module',
         ],
@@ -84,7 +88,7 @@ $config = [
             ],
         ],
         'urlManager' => [
-            'enablePrettyUrl' => true,
+            'enablePrettyUrl' => false,
             'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [

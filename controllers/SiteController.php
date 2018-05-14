@@ -49,8 +49,8 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-//        return $this->redirect(['/site/login']);
-        return $this->render('index');
+        return $this->redirect(['/user/security/login']);
+//        return $this->render('index');
     }
 
     public function actionLogin()

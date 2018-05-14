@@ -28,21 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'baseAuthUrl' => ['/user/security/auth']
                 ]) ?>
 
-                <?= $form->field($model, 'username') ?>
-
-                <?= $form->field($model, 'email') ?>
-
-                <?php if (Yii::$app->getModule('user')->enableGeneratingPassword == false): ?>
-                    <?= $form->field($model, 'password')->passwordInput() ?>
-                <?php endif ?>
-
-                <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block']) ?>
-
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
-        <p class="text-center">
-            <?= Html::a(Yii::t('user', 'Already registered? Sign in!'), ['/user/security/login']) ?>
-        </p>
     </div>
 </div>
