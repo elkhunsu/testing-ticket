@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\EventSearch */
+/* @var $model app\models\EventSeach */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -14,6 +14,10 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
+
+    <?= $form->field($model, 'id_event') ?>
+
+    <?= $form->field($model, 'id_lokasi') ?>
 
     <?= $form->field($model, 'nama_event') ?>
 

@@ -7,19 +7,19 @@ use Yii;
 /**
  * This is the model class for table "event".
  *
- * @property integer $id_event
- * @property integer $id_lokasi
+ * @property int $id_event
+ * @property int $id_lokasi
  * @property string $nama_event
  * @property string $nama_lokasi
  * @property string $description
  *
- * @property Lokasi $idLokasi
+ * @property Lokasi $lokasi
  * @property Tiket $tiket
  */
 class Event extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -27,7 +27,7 @@ class Event extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -40,7 +40,7 @@ class Event extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -56,7 +56,7 @@ class Event extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdLokasi()
+    public function getLokasi()
     {
         return $this->hasOne(Lokasi::className(), ['id_lokasi' => 'id_lokasi']);
     }

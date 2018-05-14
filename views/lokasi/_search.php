@@ -15,11 +15,9 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'nama_lokasi') ?>
+    <?= $form->field($model, 'id_lokasi') ?>
 
-    <?= $form->field($model, 'description') ?>
-
-    <?= $form->field($model, 'foto_lokasi') ?>
+    <?= $form->field($model, 'lokasi') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

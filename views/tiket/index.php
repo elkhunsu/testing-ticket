@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TiketSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -18,16 +18,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Tiket', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'jenis_tiket',
-            'harga_tiket',
+            'id_tiket',
+            'id_event',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-<?php Pjax::end(); ?></div>
+</div>

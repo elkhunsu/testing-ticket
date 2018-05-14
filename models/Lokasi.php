@@ -7,17 +7,15 @@ use Yii;
 /**
  * This is the model class for table "lokasi".
  *
- * @property integer $id_lokasi
- * @property string $nama_lokasi
- * @property integer $description
- * @property string $foto_lokasi
+ * @property int $id_lokasi
+ * @property string $lokasi
  *
  * @property Event[] $events
  */
 class Lokasi extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -25,25 +23,24 @@ class Lokasi extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['nama_lokasi', 'description', 'foto_lokasi'], 'required'],
-            [['nama_lokasi', 'foto_lokasi', 'description'], 'string', 'max' => 255],
+            [['lokasi'], 'required'],
+            [['lokasi'], 'string', 'max' => 255],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
-            'nama_lokasi' => 'Nama Lokasi',
-            'description' => 'Description',
-            'foto_lokasi' => 'Foto Lokasi',
+            'id_lokasi' => 'Id Lokasi',
+            'lokasi' => 'Lokasi',
         ];
     }
 

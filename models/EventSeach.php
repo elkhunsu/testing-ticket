@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Tiket;
+use app\models\Event;
 
 /**
- * TiketSearch represents the model behind the search form of `app\models\Tiket`.
+ * EventSeach represents the model behind the search form of `app\models\Event`.
  */
-class TiketSearch extends Tiket
+class EventSeach extends Event
 {
     /**
      * {@inheritdoc}
@@ -18,7 +18,8 @@ class TiketSearch extends Tiket
     public function rules()
     {
         return [
-            [['id_tiket', 'id_event'], 'integer'],
+            [['id_event', 'id_lokasi'], 'integer'],
+            [['nama_event', 'nama_lokasi', 'description'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class TiketSearch extends Tiket
      */
     public function search($params)
     {
-        $query = Tiket::find();
+        $query = Event::find();
 
         // add conditions that should always apply here
 
@@ -58,9 +59,13 @@ class TiketSearch extends Tiket
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_tiket' => $this->id_tiket,
             'id_event' => $this->id_event,
+            'id_lokasi' => $this->id_lokasi,
         ]);
+
+        $query->andFilterWhere(['like', 'nama_event', $this->nama_event])
+            ->andFilterWhere(['like', 'nama_lokasi', $this->nama_lokasi])
+            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

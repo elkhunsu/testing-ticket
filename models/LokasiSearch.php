@@ -8,23 +8,23 @@ use yii\data\ActiveDataProvider;
 use app\models\Lokasi;
 
 /**
- * LokasiSearch represents the model behind the search form about `app\models\Lokasi`.
+ * LokasiSearch represents the model behind the search form of `app\models\Lokasi`.
  */
 class LokasiSearch extends Lokasi
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id_lokasi', 'description'], 'integer'],
-            [['nama_lokasi', 'foto_lokasi'], 'safe'],
+            [['id_lokasi'], 'integer'],
+            [['lokasi'], 'safe'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -60,11 +60,9 @@ class LokasiSearch extends Lokasi
         // grid filtering conditions
         $query->andFilterWhere([
             'id_lokasi' => $this->id_lokasi,
-            'description' => $this->description,
         ]);
 
-        $query->andFilterWhere(['like', 'nama_lokasi', $this->nama_lokasi])
-            ->andFilterWhere(['like', 'foto_lokasi', $this->foto_lokasi]);
+        $query->andFilterWhere(['like', 'lokasi', $this->lokasi]);
 
         return $dataProvider;
     }

@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tiket */
 
-$this->title = $model->jenis_tiket;
+$this->title = $model->id_tiket;
 $this->params['breadcrumbs'][] = ['label' => 'Tikets', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,8 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'jenis_tiket',
-            'harga_tiket',
+            'id_tiket',
+            'id_event',
         ],
     ]) ?>
 

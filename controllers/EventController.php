@@ -4,11 +4,10 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Event;
-use app\models\EventSearch;
+use app\models\EventSeach;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
 
 /**
  * EventController implements the CRUD actions for Event model.
@@ -16,7 +15,7 @@ use yii\helpers\ArrayHelper;
 class EventController extends Controller
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors()
     {
@@ -36,7 +35,7 @@ class EventController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new EventSearch();
+        $searchModel = new EventSeach();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -49,6 +48,7 @@ class EventController extends Controller
      * Displays a single Event model.
      * @param integer $id
      * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
@@ -65,13 +65,14 @@ class EventController extends Controller
     public function actionCreate()
     {
         $model = new Event();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_event]);
-        } else {
-            return $this->render('create', [
-                'model' => $model
-            ]);
         }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -79,20 +80,19 @@ class EventController extends Controller
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $items = ArrayHelper::map(\app\models\Lokasi::find()->all(), 'nama_lokasi', 'nama_lokasi');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_event]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-                'items' => $items
-            ]);
         }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -100,6 +100,7 @@ class EventController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id)
     {
@@ -119,8 +120,8 @@ class EventController extends Controller
     {
         if (($model = Event::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
         }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
