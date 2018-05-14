@@ -55,6 +55,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => ['site/login']
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -94,6 +95,22 @@ $config = [
             'rules' => [
                     ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
             ],
+        ],
+       'as beforeRequest' => [
+            'class' => 'yii\filters\AccessControl',
+            'rules' => [
+                [
+                    'allow' => true,
+                    'actions' => ['login'],
+                ],
+                [
+                    'allow' => true,
+                    'roles' => ['@'],
+                ],
+            ],
+            'denyCallback' => function () {
+                return Yii::$app->response->redirect(['/user/security/login']);
+            },
         ],
         'db' => require(__DIR__ . '/db.php'),
     ],

@@ -8,6 +8,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Tiket;
+use app\models\TiketSearch;
 
 class SiteController extends Controller
 {
@@ -46,11 +48,29 @@ class SiteController extends Controller
             ],
         ];
     }
+    
+    public function beforeAction($action)
+    {
+        if (parent::beforeAction($action)) {
+            // If you want to change it only in one or few actions, add additional check
+
+            Yii::$app->user->loginUrl = ['user/security/login'];
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public function actionIndex()
     {
-//        return $this->redirect(['/site/login']);
-        return $this->render('index');
+        $searchModel = new TiketSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionLogin()
